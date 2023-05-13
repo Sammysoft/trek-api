@@ -5,12 +5,13 @@ const Router = express.Router();
 
 Router.post("/send", (req, res, next) => {
   try {
+    console.log(req.body);
     const { email, firstname, lastname, message } = req.body;
     if (!email || !lastname || !message || !firstname) {
       res.status(400).json({ data: "Please fill all details" });
     } else {
       const senderMail = email;
-      const recieverMail = "ireoluwaenoch@gmail.com";
+      const recieverMail = "Ireoluwaenoch@gmail.com";
       const subject = `Message from ${firstname} ${lastname}`;
       const text = `Hello Sir/Ma`;
       const body = `${message}`;
@@ -19,6 +20,7 @@ Router.post("/send", (req, res, next) => {
           console.log("Mail Not Sent");
         } else {
           console.log("Mail Sent");
+          res.status(200).json({ data: "Mail  sent successfully" });
         }
       });
     }
